@@ -1,0 +1,7 @@
+{
+    "name": "tarekdj/paratest-demo",
+    "require-dev": {
+        "brianium/paratest": "^6.1"
+    },
+    "require": {}
+}
