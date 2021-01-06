@@ -27,33 +27,6 @@ jobs:
 
       # run tests with phpunit
       - run: ./vendor/bin/phpunit tests
-  paratest:
-    docker:
-      - image: circleci/php:7.4
-    steps:
-      - checkout
-
-      - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo docker-php-ext-install zip
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
-
-      - run: composer install
-
-      - save_cache:
-          key: v1-dependencies-{{ checksum "composer.json" }}
-          paths:
-            - ./vendor
 
       # run tests with paratest
       - run: ./vendor/bin/paratest -p8 tests
-
-workflows:
-    version: 2
-    build:
-        jobs:
-            - phpunit
-            - paratest
